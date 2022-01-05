@@ -14,6 +14,7 @@ type Config struct {
 	DestFilePath string
 	SecretKey    string
 	SecretPath   string
+	VaultAddr    string
 	TLS          vault.TLSConfig
 }
 
@@ -31,6 +32,7 @@ func GetConfig() (Config, error) {
 	vfs.StringVar(&config.TLS.ClientCert, "client-cert", "", "Path to the certificate for Vault communication.")
 	vfs.StringVar(&config.TLS.ClientKey, "client-key", "", "Path to the private key for vault communication.")
 	vfs.StringVar(&config.TLS.TLSServerName, "tls-server-name", "", "If set, this is used to set the SNI host when connecting via TLS.")
+	vfs.StringVar(&config.VaultAddr, "addr", "https://127.0.0.1:8200", "The address of the Vault cluster.")
 	vfs.BoolVar(&config.TLS.Insecure, "insecure", true, "Enables or disables SSL verification.")
 	vfs.Parse(os.Args[1:])
 	flag.Parse()

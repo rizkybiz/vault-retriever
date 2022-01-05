@@ -81,6 +81,7 @@ func (r *Retriever) setVaultClient() error {
 		log.Err(err).Msg("error configuring TLS within vault client")
 		return err
 	}
+	config.Address = r.config.VaultAddr
 	client, err := vault.NewClient(config)
 	if err != nil {
 		log.Err(err).Msg("error creating vault client")
